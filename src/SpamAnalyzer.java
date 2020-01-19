@@ -1,2 +1,2 @@
-public class SpamAnalyzer {
+public class SpamAnalyzer implements TextAnalyzer {
 }

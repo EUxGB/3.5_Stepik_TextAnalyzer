@@ -1,2 +1,2 @@
-public class TooLongTextAnalyzer {
+public class TooLongTextAnalyzer implements TextAnalyzer{
 }

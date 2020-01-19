@@ -1,2 +1,2 @@
-public class NegativeTextAnalyzer {
+public class NegativeTextAnalyzer implements TextAnalyzer {
 }
