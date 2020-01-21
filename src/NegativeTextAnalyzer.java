@@ -1,19 +1,31 @@
 import interfaces.Label;
 import interfaces.TextAnalyzer;
 
+import java.util.Arrays;
+
 public class NegativeTextAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
 
+
+    String[] keywords_negative = new String[]{":(", ":|", "=("};
+
+
     public Label processText(String text) {
+
         return null;
+
     }
 
     @Override
-    String getKeywords() {
-        return null;
+    String [] getKeywords() {
+        return keywords_negative;
+
     }
 
     @Override
     Label getLabel() {
-        return null;
+        String [] key = getKeywords();
+
+        return Label.OK;
+
     }
 }

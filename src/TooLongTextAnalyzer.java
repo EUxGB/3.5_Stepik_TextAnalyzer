@@ -3,8 +3,18 @@ import interfaces.TextAnalyzer;
 
 public class TooLongTextAnalyzer implements TextAnalyzer {
 
+    int maxLength;
+
+   public TooLongTextAnalyzer(int maxLength){
+        this.maxLength = maxLength;
+
+    }
+
+
     @Override
     public Label processText(String text) {
-        return null;
+        if (text.length() > maxLength) return Label.TOO_LONG;
+        return Label.OK;
+
     }
 }
