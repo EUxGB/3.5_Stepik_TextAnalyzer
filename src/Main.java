@@ -1,26 +1,32 @@
 import interfaces.TextAnalyzer;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String my_text = "Катерина не успела на автобус и заматерилась =) . 8) " +
-                "Прохожий обернулся, и многозначительно взглянув на нее произнес. Мадам, а вы не =) !!! ";
+        String [] keywords_spam = new String[] {"купите","реклама","цена","цене"};
 
-        int maxLength = 50;
-        String [] keywords_spam = new String[] {"взяглнув","реклама","цена"};
+        int maxLength = 500;
 
-        TextAnalyzer txt_long = new TooLongTextAnalyzer(maxLength);
-        TextAnalyzer txt_spam = new SpamAnalyzer(keywords_spam);
-        TextAnalyzer txt_negative = new NegativeTextAnalyzer();
+        String [] test_txt = new String[] {
+                "Катерина не успела на автобус и заматерилась =) . 8) :( купите наши услуги" ,
+                "Прохожий обернулся, и многозначительно взглянув на нее произнес. Мадам, а Вы не =) против.. !!! ",
+                "Мне не понравился этот текст поэтому :((((((( не смотря на то, что цен привлекательная",
+                "Реклама по доступной цене :)"
 
-        
-        txt_long.processText(my_text);
-        txt_spam.processText(my_text);
-        txt_negative.processText(my_text);
+        };
+        TextAnalyzer[] analyzers = new TextAnalyzer[] {
+                new SpamAnalyzer(keywords_spam),
+                new NegativeTextAnalyzer(),
+                new TooLongTextAnalyzer(maxLength)
+        };
 
+        CheckLables txt_chek =  new CheckLables();
+        for (String txt : test_txt)
+        System.out.println(txt_chek.checkLabels(analyzers,txt)+"\n "+txt+"\n");
+
+        }
     }
-}
+

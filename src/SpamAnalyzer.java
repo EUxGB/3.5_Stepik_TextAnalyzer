@@ -1,34 +1,31 @@
 import interfaces.Label;
 import interfaces.TextAnalyzer;
 
-import java.util.Arrays;
-
 public class SpamAnalyzer extends KeywordAnalyzer implements TextAnalyzer {
 
-     String[] keywords;
+    private String[] keywords;
 
-    public   SpamAnalyzer (String [] keywords){
+    SpamAnalyzer(String[] keywords) {
         this.keywords = keywords;
-
     }
 
-
-
     @Override
-    String [] getKeywords() {
+    protected String[] getKeywords() {
         return keywords;
     }
 
     @Override
-    Label getLabel() {
-        String [] key = getKeywords();
-
-        return Label.OK;
+     protected Label getLabel() {
+        return Label.SPAM;
     }
 
     @Override
-    public Label processText(String text) {
-
-        return null;
+    public Label processText(String my_text) {
+        String[] words_spam = getKeywords();
+        for (String key_i : words_spam) {
+            boolean check = my_text.contains(key_i);
+            if (check) return getLabel();
+        }
+        return Label.OK;
     }
 }
